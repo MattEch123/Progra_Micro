@@ -1,0 +1,420 @@
+
+Pre-Lab4.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000012  00800100  0000025e  000002f2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000025e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000004  00800112  00800112  00000304  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000304  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000334  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000048  00000000  00000000  00000374  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000079b  00000000  00000000  000003bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000697  00000000  00000000  00000b57  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000361  00000000  00000000  000011ee  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000d0  00000000  00000000  00001550  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003dc  00000000  00000000  00001620  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000144  00000000  00000000  000019fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000038  00000000  00000000  00001b40  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 9b 00 	jmp	0x136	; 0x136 <__vector_3>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 f3 00 	jmp	0x1e6	; 0x1e6 <__vector_16>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 b5 00 	jmp	0x16a	; 0x16a <__vector_21>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ee e5       	ldi	r30, 0x5E	; 94
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a2 31       	cpi	r26, 0x12	; 18
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a2 e1       	ldi	r26, 0x12	; 18
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a6 31       	cpi	r26, 0x16	; 22
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 98 00 	call	0x130	; 0x130 <main>
+  9e:	0c 94 2d 01 	jmp	0x25a	; 0x25a <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <initADC>:
+	sei();
+	
+}
+
+void initADC(){
+	ADMUX = 0; // LIMPIAR EL REGISTRO ADMUX
+  a6:	ec e7       	ldi	r30, 0x7C	; 124
+  a8:	f0 e0       	ldi	r31, 0x00	; 0
+  aa:	10 82       	st	Z, r1
+	ADMUX |= (1 << REFS0); // REFERENCIA = AVCC
+  ac:	80 81       	ld	r24, Z
+  ae:	80 64       	ori	r24, 0x40	; 64
+  b0:	80 83       	st	Z, r24
+	ADMUX |= (1 << ADLAR); // JUSTIFICACION A LA IZQUIERDA
+  b2:	80 81       	ld	r24, Z
+  b4:	80 62       	ori	r24, 0x20	; 32
+  b6:	80 83       	st	Z, r24
+	ADMUX |= (1 << MUX0) | (1 << MUX1) | (1 << MUX2);
+  b8:	80 81       	ld	r24, Z
+  ba:	87 60       	ori	r24, 0x07	; 7
+  bc:	80 83       	st	Z, r24
+	
+	ADCSRA = 0;
+  be:	ea e7       	ldi	r30, 0x7A	; 122
+  c0:	f0 e0       	ldi	r31, 0x00	; 0
+  c2:	10 82       	st	Z, r1
+	ADCSRA |= (1 << ADPS1) | (1 << ADPS0); // PRESCALER DE 8
+  c4:	80 81       	ld	r24, Z
+  c6:	83 60       	ori	r24, 0x03	; 3
+  c8:	80 83       	st	Z, r24
+	ADCSRA |= (1 << ADEN) | (1 << ADIE); // HABILITAR INTERRUPCIONES
+  ca:	80 81       	ld	r24, Z
+  cc:	88 68       	ori	r24, 0x88	; 136
+  ce:	80 83       	st	Z, r24
+	
+	ADCSRA |= (1 << ADSC); // EMPIEZA A HACER LA CONVERSION DEL PIN
+  d0:	80 81       	ld	r24, Z
+  d2:	80 64       	ori	r24, 0x40	; 64
+  d4:	80 83       	st	Z, r24
+  d6:	08 95       	ret
+
+000000d8 <setup>:
+		
+	} 
+}
+/****************************************/
+// NON-Interrupt subroutines
+void setup(){
+  d8:	cf 93       	push	r28
+	cli();
+  da:	f8 94       	cli
+	DDRD = 0xFF; //PINES DEL PUERTO D COMO SALIDA
+  dc:	8f ef       	ldi	r24, 0xFF	; 255
+  de:	8a b9       	out	0x0a, r24	; 10
+	DDRC = 0x0F; //PINES DEL PUERTO C COMO SALIDA
+  e0:	9f e0       	ldi	r25, 0x0F	; 15
+  e2:	97 b9       	out	0x07, r25	; 7
+	PORTC = 0x01; // ENCENDER EL TRANSISTOR EN PC0
+  e4:	c1 e0       	ldi	r28, 0x01	; 1
+  e6:	c8 b9       	out	0x08, r28	; 8
+	DDRB = 0x00; //PINES DEL PUERTO B COMO ENTRADA
+  e8:	14 b8       	out	0x04, r1	; 4
+	PORTB = 0xFF; //ACTICAR PULL-UPS EN PUERTO B
+  ea:	85 b9       	out	0x05, r24	; 5
+	
+	
+	CLKPR |= (1 << CLKPCE) | (1 << CLKPS2); // PRESCALER PRINCIPLAR EN 16, 1MHZ
+  ec:	e1 e6       	ldi	r30, 0x61	; 97
+  ee:	f0 e0       	ldi	r31, 0x00	; 0
+  f0:	80 81       	ld	r24, Z
+  f2:	84 68       	ori	r24, 0x84	; 132
+  f4:	80 83       	st	Z, r24
+
+	
+	initADC();
+  f6:	0e 94 53 00 	call	0xa6	; 0xa6 <initADC>
+	
+	//INTERRUPCIONES
+	//INTERRUPCIONES PUERTO B
+	PCICR |= (1<<PCIE0); // HABILITAR LAS INTERRUPCIONES EN EL PUERTO B
+  fa:	e8 e6       	ldi	r30, 0x68	; 104
+  fc:	f0 e0       	ldi	r31, 0x00	; 0
+  fe:	80 81       	ld	r24, Z
+ 100:	81 60       	ori	r24, 0x01	; 1
+ 102:	80 83       	st	Z, r24
+	PCMSK0 |= (1<<PCINT0) | (1<<PCINT1);
+ 104:	eb e6       	ldi	r30, 0x6B	; 107
+ 106:	f0 e0       	ldi	r31, 0x00	; 0
+ 108:	80 81       	ld	r24, Z
+ 10a:	83 60       	ori	r24, 0x03	; 3
+ 10c:	80 83       	st	Z, r24
+	
+	//INTERRUPCION TIMER 0
+	TCCR0B |= (1 << CS01) | (1 << CS00);
+ 10e:	85 b5       	in	r24, 0x25	; 37
+ 110:	83 60       	ori	r24, 0x03	; 3
+ 112:	85 bd       	out	0x25, r24	; 37
+	TCNT0 = timer0_ini;
+ 114:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <timer0_ini>
+ 118:	86 bd       	out	0x26, r24	; 38
+	TIMSK0 = (1 << TOIE0);
+ 11a:	c0 93 6e 00 	sts	0x006E, r28	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
+	
+	display1 = tabla7seg[0];
+ 11e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 122:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <display1>
+	display2 = tabla7seg[0];
+ 126:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <__data_end>
+	
+	sei();
+ 12a:	78 94       	sei
+	
+}
+ 12c:	cf 91       	pop	r28
+ 12e:	08 95       	ret
+
+00000130 <main>:
+
+/****************************************/
+// Main Function
+
+int main(void){
+	setup();
+ 130:	0e 94 6c 00 	call	0xd8	; 0xd8 <setup>
+ 134:	ff cf       	rjmp	.-2      	; 0x134 <main+0x4>
+
+00000136 <__vector_3>:
+}
+
+/****************************************/
+
+// Interrupt routines
+ISR(PCINT0_vect){
+ 136:	1f 92       	push	r1
+ 138:	0f 92       	push	r0
+ 13a:	0f b6       	in	r0, 0x3f	; 63
+ 13c:	0f 92       	push	r0
+ 13e:	11 24       	eor	r1, r1
+ 140:	8f 93       	push	r24
+	if (!(PINB & (1 << PB0))) {  // Si PB0 está en 0 (presionado)
+ 142:	18 99       	sbic	0x03, 0	; 3
+ 144:	05 c0       	rjmp	.+10     	; 0x150 <__vector_3+0x1a>
+		leds++;  // Incrementa contador
+ 146:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <leds>
+ 14a:	8f 5f       	subi	r24, 0xFF	; 255
+ 14c:	80 93 14 01 	sts	0x0114, r24	; 0x800114 <leds>
+	}
+	if (!(PINB & (1 << PB1))) {  // Si PB1 está en 0 (presionado)
+ 150:	19 99       	sbic	0x03, 1	; 3
+ 152:	05 c0       	rjmp	.+10     	; 0x15e <__vector_3+0x28>
+		leds--;  // Decrementa contador
+ 154:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <leds>
+ 158:	81 50       	subi	r24, 0x01	; 1
+ 15a:	80 93 14 01 	sts	0x0114, r24	; 0x800114 <leds>
+	}
+}
+ 15e:	8f 91       	pop	r24
+ 160:	0f 90       	pop	r0
+ 162:	0f be       	out	0x3f, r0	; 63
+ 164:	0f 90       	pop	r0
+ 166:	1f 90       	pop	r1
+ 168:	18 95       	reti
+
+0000016a <__vector_21>:
+
+ISR(ADC_vect){
+ 16a:	1f 92       	push	r1
+ 16c:	0f 92       	push	r0
+ 16e:	0f b6       	in	r0, 0x3f	; 63
+ 170:	0f 92       	push	r0
+ 172:	11 24       	eor	r1, r1
+ 174:	8f 93       	push	r24
+ 176:	9f 93       	push	r25
+ 178:	af 93       	push	r26
+ 17a:	bf 93       	push	r27
+ 17c:	cf 93       	push	r28
+ 17e:	df 93       	push	r29
+ 180:	ef 93       	push	r30
+ 182:	ff 93       	push	r31
+	uint8_t adc_value = ADCH;
+ 184:	c9 e7       	ldi	r28, 0x79	; 121
+ 186:	d0 e0       	ldi	r29, 0x00	; 0
+ 188:	e8 81       	ld	r30, Y
+	display1 = tabla7seg[adc_value & 0x0F];
+ 18a:	ae 2f       	mov	r26, r30
+ 18c:	af 70       	andi	r26, 0x0F	; 15
+ 18e:	b0 e0       	ldi	r27, 0x00	; 0
+ 190:	a0 50       	subi	r26, 0x00	; 0
+ 192:	bf 4f       	sbci	r27, 0xFF	; 255
+ 194:	8c 91       	ld	r24, X
+ 196:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <display1>
+	display2 = tabla7seg[(adc_value & 0xF0) >> 4];
+ 19a:	e2 95       	swap	r30
+ 19c:	ef 70       	andi	r30, 0x0F	; 15
+ 19e:	f0 e0       	ldi	r31, 0x00	; 0
+ 1a0:	e0 50       	subi	r30, 0x00	; 0
+ 1a2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1a4:	80 81       	ld	r24, Z
+ 1a6:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <__data_end>
+	if (ADCH > leds){
+ 1aa:	98 81       	ld	r25, Y
+ 1ac:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <leds>
+ 1b0:	89 17       	cp	r24, r25
+ 1b2:	20 f4       	brcc	.+8      	; 0x1bc <__vector_21+0x52>
+		PORTC |= (1 << PORTC3);
+ 1b4:	88 b1       	in	r24, 0x08	; 8
+ 1b6:	88 60       	ori	r24, 0x08	; 8
+ 1b8:	88 b9       	out	0x08, r24	; 8
+ 1ba:	03 c0       	rjmp	.+6      	; 0x1c2 <__vector_21+0x58>
+		}else{
+		PORTC &= ~(1 << PORTC3);
+ 1bc:	88 b1       	in	r24, 0x08	; 8
+ 1be:	87 7f       	andi	r24, 0xF7	; 247
+ 1c0:	88 b9       	out	0x08, r24	; 8
+	}
+	
+	ADCSRA |= (1 << ADSC); // Para que empice a leer otra vez
+ 1c2:	ea e7       	ldi	r30, 0x7A	; 122
+ 1c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c6:	80 81       	ld	r24, Z
+ 1c8:	80 64       	ori	r24, 0x40	; 64
+ 1ca:	80 83       	st	Z, r24
+	
+}
+ 1cc:	ff 91       	pop	r31
+ 1ce:	ef 91       	pop	r30
+ 1d0:	df 91       	pop	r29
+ 1d2:	cf 91       	pop	r28
+ 1d4:	bf 91       	pop	r27
+ 1d6:	af 91       	pop	r26
+ 1d8:	9f 91       	pop	r25
+ 1da:	8f 91       	pop	r24
+ 1dc:	0f 90       	pop	r0
+ 1de:	0f be       	out	0x3f, r0	; 63
+ 1e0:	0f 90       	pop	r0
+ 1e2:	1f 90       	pop	r1
+ 1e4:	18 95       	reti
+
+000001e6 <__vector_16>:
+
+ISR(TIMER0_OVF_vect){
+ 1e6:	1f 92       	push	r1
+ 1e8:	0f 92       	push	r0
+ 1ea:	0f b6       	in	r0, 0x3f	; 63
+ 1ec:	0f 92       	push	r0
+ 1ee:	11 24       	eor	r1, r1
+ 1f0:	8f 93       	push	r24
+	TCNT0 = timer0_ini;
+ 1f2:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <timer0_ini>
+ 1f6:	86 bd       	out	0x26, r24	; 38
+	switch(transistores)
+ 1f8:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <transistores>
+ 1fc:	81 30       	cpi	r24, 0x01	; 1
+ 1fe:	89 f0       	breq	.+34     	; 0x222 <__vector_16+0x3c>
+ 200:	18 f0       	brcs	.+6      	; 0x208 <__vector_16+0x22>
+ 202:	82 30       	cpi	r24, 0x02	; 2
+ 204:	d9 f0       	breq	.+54     	; 0x23c <__vector_16+0x56>
+ 206:	23 c0       	rjmp	.+70     	; 0x24e <__vector_16+0x68>
+	{
+		case 0:
+		PORTC = (PORTC & 0b00001000) | 0x01 ; // Enciende PC0, mantiene PC3-PC7
+ 208:	88 b1       	in	r24, 0x08	; 8
+ 20a:	88 70       	andi	r24, 0x08	; 8
+ 20c:	81 60       	ori	r24, 0x01	; 1
+ 20e:	88 b9       	out	0x08, r24	; 8
+		transistores++;
+ 210:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <transistores>
+ 214:	8f 5f       	subi	r24, 0xFF	; 255
+ 216:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <transistores>
+		PORTD = leds;
+ 21a:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <leds>
+ 21e:	8b b9       	out	0x0b, r24	; 11
+		break;
+ 220:	16 c0       	rjmp	.+44     	; 0x24e <__vector_16+0x68>
+		case 1:
+		PORTC = (PORTC & 0b00001000) | 0x02; // Enciende PC1, mantiene PC3-PC7
+ 222:	88 b1       	in	r24, 0x08	; 8
+ 224:	88 70       	andi	r24, 0x08	; 8
+ 226:	82 60       	ori	r24, 0x02	; 2
+ 228:	88 b9       	out	0x08, r24	; 8
+		transistores++;
+ 22a:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <transistores>
+ 22e:	8f 5f       	subi	r24, 0xFF	; 255
+ 230:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <transistores>
+		PORTD = display1;
+ 234:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <display1>
+ 238:	8b b9       	out	0x0b, r24	; 11
+		break;
+ 23a:	09 c0       	rjmp	.+18     	; 0x24e <__vector_16+0x68>
+		case 2:
+		PORTC = (PORTC & 0b00001000) | 0x04; // Enciende PC2, mantiene PC3-PC7
+ 23c:	88 b1       	in	r24, 0x08	; 8
+ 23e:	88 70       	andi	r24, 0x08	; 8
+ 240:	84 60       	ori	r24, 0x04	; 4
+ 242:	88 b9       	out	0x08, r24	; 8
+		transistores = 0;
+ 244:	10 92 15 01 	sts	0x0115, r1	; 0x800115 <transistores>
+		PORTD = display2;
+ 248:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end>
+ 24c:	8b b9       	out	0x0b, r24	; 11
+		break;
+		default:
+		break;
+	}
+}
+ 24e:	8f 91       	pop	r24
+ 250:	0f 90       	pop	r0
+ 252:	0f be       	out	0x3f, r0	; 63
+ 254:	0f 90       	pop	r0
+ 256:	1f 90       	pop	r1
+ 258:	18 95       	reti
+
+0000025a <_exit>:
+ 25a:	f8 94       	cli
+
+0000025c <__stop_program>:
+ 25c:	ff cf       	rjmp	.-2      	; 0x25c <__stop_program>
